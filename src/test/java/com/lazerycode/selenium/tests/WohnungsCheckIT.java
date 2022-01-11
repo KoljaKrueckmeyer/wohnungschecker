@@ -4,8 +4,11 @@ import com.lazerycode.selenium.DriverBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -24,7 +27,13 @@ public class WohnungsCheckIT extends DriverBase {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Locating element with text()
-        WebElement e = driver.findElement(By.xpath(String.format("//*[text()='%s']", DHU_TEXT_TO_CHECK)));
+        String textToCheck = String.format("//*[text()='%s']", DHU_TEXT_TO_CHECK);
+        System.out.println(textToCheck);
+        final WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), Duration.ofSeconds(15), Duration.ofMillis(100));
+        final By byTextToCheck = By.xpath(textToCheck);
+        wait.until(ExpectedConditions.presenceOfElementLocated(byTextToCheck));
+
+        WebElement e = driver.findElement(byTextToCheck);
 
         //Normally you would have some assertions to check things that you really care about
         assertThat(e.getText()).isEqualTo(DHU_TEXT_TO_CHECK);
