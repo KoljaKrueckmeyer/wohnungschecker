@@ -5,6 +5,4 @@ import org.openqa.selenium.By;
 
 public class DhuHomePage {
 
-    //private final Query searchBar = new Query().defaultLocator(By.);
-
 }

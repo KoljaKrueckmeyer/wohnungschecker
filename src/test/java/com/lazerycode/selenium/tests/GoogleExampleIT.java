@@ -4,10 +4,12 @@ import com.lazerycode.selenium.DriverBase;
 import com.lazerycode.selenium.page_objects.GoogleHomePage;
 import com.lazerycode.selenium.page_objects.GoogleSearchPage;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Ignore
 public class GoogleExampleIT extends DriverBase {
 
 
