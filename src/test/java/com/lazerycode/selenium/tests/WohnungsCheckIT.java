@@ -27,9 +27,13 @@ public class WohnungsCheckIT extends DriverBase {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Locating element with text()
+        final WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), Duration.ofSeconds(15), Duration.ofMillis(100));
+        By acceptCookieLayerButtonSelector = By.id("uc-btn-accept-banner");
+        wait.until(ExpectedConditions.presenceOfElementLocated(acceptCookieLayerButtonSelector));
+        WebElement acceptCookieLayerButton = driver.findElement(acceptCookieLayerButtonSelector);
+        acceptCookieLayerButton.click();
         String textToCheck = String.format("//*[text()='%s']", DHU_TEXT_TO_CHECK);
         System.out.println(textToCheck);
-        final WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), Duration.ofSeconds(15), Duration.ofMillis(100));
         final By byTextToCheck = By.xpath(textToCheck);
         wait.until(ExpectedConditions.presenceOfElementLocated(byTextToCheck));
 
