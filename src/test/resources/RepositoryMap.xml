@@ -30,10 +30,17 @@
             </version>
         </driver>
         <driver id="googlechrome">
-            <version id="97">
+<!--            <version id="97">
                 <bitrate thirtytwobit="true" sixtyfourbit="true">
                     <filelocation>https://chromedriver.storage.googleapis.com/97.0.4692.71/chromedriver_win32.zip</filelocation>
                     <hash>27fe4c43e46e083caf786118c3db04fc38c6de67</hash>
+                    <hashtype>sha1</hashtype>
+                </bitrate>
+            </version>-->
+            <version id="100">
+                <bitrate thirtytwobit="true" sixtyfourbit="true">
+                    <filelocation>https://chromedriver.storage.googleapis.com/103.0.5060.53/chromedriver_win32.zip</filelocation>
+                    <hash>266a503f3ac359d6ddcbaeb9122c3354</hash>
                     <hashtype>sha1</hashtype>
                 </bitrate>
             </version>

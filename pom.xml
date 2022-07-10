@@ -53,7 +53,7 @@
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <!--Configuration Properties-->
         <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-        <overwrite.binaries>false</overwrite.binaries>
+        <overwrite.binaries>true</overwrite.binaries>
         <read.timeout>30000</read.timeout>
         <connection.timeout>40000</connection.timeout>
         <retry.attempts>4</retry.attempts>
