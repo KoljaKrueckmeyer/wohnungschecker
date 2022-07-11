@@ -4,6 +4,7 @@ import com.lazerycode.selenium.DriverBase;
 import com.lazerycode.selenium.page_objects.DhuHomePage;
 import com.lazerycode.selenium.page_objects.GartenstadtWandsbekFreieWhg;
 import com.lazerycode.selenium.page_objects.HbhPage;
+import com.lazerycode.selenium.page_objects.MeravisPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -25,7 +26,7 @@ public class WohnungsCheckIT extends DriverBase {
         driver.quit();
     }
 
-    @Test
+    @Test(enabled = true)
     public void checkDhu() throws Exception {
         // DHU
         final DhuHomePage dhuHomePage = new DhuHomePage();
@@ -34,7 +35,7 @@ public class WohnungsCheckIT extends DriverBase {
         assertThat(hasNoFreeFlats_dhu).isEqualTo(true);
     }
 
-    @Test
+    @Test(enabled = true)
     public void checkGartenstadt() throws Exception {
         // Gartenstadt
         final GartenstadtWandsbekFreieWhg gartenstadtWandsbekFreieWhg = new GartenstadtWandsbekFreieWhg();
@@ -43,11 +44,20 @@ public class WohnungsCheckIT extends DriverBase {
         assertThat(hasNoFreeFlats_gartenstadt).isEqualTo(true);
     }
 
-    @Test
+    @Test(enabled = true)
     public void checkHbh() throws Exception {
         // HBH
         final HbhPage hbh = new HbhPage();
         final boolean hasNoFreeFlats= hbh.hasNoFreeFlats();
+        assertThat(hasNoFreeFlats).isEqualTo(true);
+    }
+
+    @Test
+    public void checkMeravis() throws Exception {
+        // Meravis
+        final MeravisPage meravis = new MeravisPage();
+        meravis.acceptCookieLayer();
+        final boolean hasNoFreeFlats = meravis.hasNoInterestingFlats();
         assertThat(hasNoFreeFlats).isEqualTo(true);
     }
 }
