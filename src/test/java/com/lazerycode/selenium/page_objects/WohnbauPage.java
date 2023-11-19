@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class WohnbauPage {
 
     public final static String CITY = "Hamburg";
-    public final static int MIN_ROOM_COUNT = 3;
+    public final static int MIN_ROOM_COUNT = 0;
 
     final WebDriver driver;
     private final WebDriverWait wait;
