@@ -1,10 +1,7 @@
 package com.lazerycode.selenium.tests;
 
 import com.lazerycode.selenium.DriverBase;
-import com.lazerycode.selenium.page_objects.DhuHomePage;
-import com.lazerycode.selenium.page_objects.GartenstadtWandsbekFreieWhg;
-import com.lazerycode.selenium.page_objects.HbhPage;
-import com.lazerycode.selenium.page_objects.MeravisPage;
+import com.lazerycode.selenium.page_objects.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -58,6 +55,15 @@ public class WohnungsCheckIT extends DriverBase {
         final MeravisPage meravis = new MeravisPage();
         meravis.acceptCookieLayer();
         final boolean hasNoFreeFlats = meravis.hasNoInterestingFlats();
+        assertThat(hasNoFreeFlats).isEqualTo(true);
+    }
+
+    @Test(enabled = true)
+    public void checkWohnbau() throws Exception {
+        // Meravis
+        final WohnbauPage wohnbau = new WohnbauPage();
+        wohnbau.acceptCookieLayer();
+        final boolean hasNoFreeFlats = wohnbau.hasNoInterestingFlats();
         assertThat(hasNoFreeFlats).isEqualTo(true);
     }
 }
