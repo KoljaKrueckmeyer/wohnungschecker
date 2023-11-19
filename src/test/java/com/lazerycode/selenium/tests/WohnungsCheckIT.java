@@ -11,8 +11,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class WohnungsCheckIT extends DriverBase {
 
-    public static final String DHU_TEXT_TO_CHECK = "Momentan sind keine Objekte im Online-Angebot verfügbar";
-
     WebDriver driver;
     @BeforeClass
     public void setup() throws Exception {

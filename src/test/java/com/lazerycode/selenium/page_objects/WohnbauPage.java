@@ -46,10 +46,12 @@ public class WohnbauPage {
         String textToCheckFleache = String.format(".//div[contains(@class, 'flaeche')]/span]");
         final By byTextCity = By.xpath(textToCheckCity);
         final By byTextRoomCount = By.xpath(textToCheckRoomCount);
+        System.out.println("tiles found res-detail: " + tiles.size());
         for(WebElement tile : tiles) {
             try {
                 final WebElement cityElement = tile.findElement(byTextCity);
                 final WebElement roomElement = tile.findElement(byTextRoomCount);
+
                 System.out.println("");
                 System.out.println("Zimmer: " + roomElement.getText());
                 if(roomElement.getText().startsWith(String.format("%d,", MIN_ROOM_COUNT))) {
