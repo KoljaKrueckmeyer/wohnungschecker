@@ -60,7 +60,6 @@ public class WohnungsCheckIT extends DriverBase {
 
     @Test(enabled = true)
     public void checkWohnbau() throws Exception {
-        // Meravis
         final WohnbauPage wohnbau = new WohnbauPage();
         wohnbau.acceptCookieLayer();
         final boolean hasNoFreeFlats = wohnbau.hasNoInterestingFlats();

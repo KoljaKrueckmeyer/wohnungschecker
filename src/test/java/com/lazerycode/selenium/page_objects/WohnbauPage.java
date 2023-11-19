@@ -42,15 +42,15 @@ public class WohnbauPage {
         final List<WebElement> tiles = driver.findElements(tileSelector);
 
         String textToCheckCity = String.format(".//div[contains(@class, 'ort)]", "");
-        String textToCheckRoomCount = String.format(".//span[contains(@class, 'zimmer')]/span]");
-        String textToCheckFleache = String.format(".//span[contains(@class, 'flaeche')]/span]");
+        String textToCheckRoomCount = String.format(".//div[contains(@class, 'zimmer')]/span]");
+        String textToCheckFleache = String.format(".//div[contains(@class, 'flaeche')]/span]");
         final By byTextCity = By.xpath(textToCheckCity);
         final By byTextRoomCount = By.xpath(textToCheckRoomCount);
         for(WebElement tile : tiles) {
             try {
                 final WebElement cityElement = tile.findElement(byTextCity);
                 final WebElement roomElement = tile.findElement(byTextRoomCount);
-                if(cityElement.getText().endsWith(CITY) && roomElement.getText().startsWith(String.format("%d,", MIN_ROOM_COUNT))) {
+                if(roomElement.getText().startsWith(String.format("%d,", MIN_ROOM_COUNT))) {
                     ret = false;
                     break;
                 }
