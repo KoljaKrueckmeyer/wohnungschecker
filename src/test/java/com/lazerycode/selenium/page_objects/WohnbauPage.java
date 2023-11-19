@@ -50,6 +50,8 @@ public class WohnbauPage {
             try {
                 final WebElement cityElement = tile.findElement(byTextCity);
                 final WebElement roomElement = tile.findElement(byTextRoomCount);
+                System.out.println("");
+                System.out.println("Zimmer: " + roomElement.getText());
                 if(roomElement.getText().startsWith(String.format("%d,", MIN_ROOM_COUNT))) {
                     ret = false;
                     break;
