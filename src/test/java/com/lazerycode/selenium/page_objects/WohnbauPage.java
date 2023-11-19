@@ -37,7 +37,7 @@ public class WohnbauPage {
     public boolean hasNoInterestingFlats() throws Exception {
         boolean ret = true;
         final WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), Duration.ofSeconds(1), Duration.ofMillis(100));
-        By tileSelector = By.className("resultcontainer");
+        By tileSelector = By.className("res-detail");
         wait.until(ExpectedConditions.presenceOfElementLocated(tileSelector));
         final List<WebElement> tiles = driver.findElements(tileSelector);
 
