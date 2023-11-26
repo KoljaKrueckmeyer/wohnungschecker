@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class WohnbauPage {
 
     public final static String CITY = "Hamburg";
-    public final static int MIN_ROOM_COUNT = 0;
+    public final static int MIN_ROOM_COUNT = 3;
 
     final WebDriver driver;
     private final WebDriverWait wait;
@@ -42,19 +42,19 @@ public class WohnbauPage {
         final List<WebElement> tiles = driver.findElements(tileSelector);
 
         String textToCheckCity = String.format(".//div[contains(@class, 'ort)]", "");
-        String textToCheckRoomCount = String.format(".//div[contains(@class, 'zimmer')]/span]");
-        String textToCheckFleache = String.format(".//div[contains(@class, 'flaeche')]/span]");
+        String textToCheckRoomCount = String.format("//div[contains(@class, 'zimmer') and contains(.//span, '%s')]", MIN_ROOM_COUNT + ",");
+        String textToCheckFleache = String.format(".//div[contains(@class, 'flaeche')]//span]");
         final By byTextCity = By.xpath(textToCheckCity);
         final By byTextRoomCount = By.xpath(textToCheckRoomCount);
         System.out.println("tiles found res-detail: " + tiles.size());
         for(WebElement tile : tiles) {
             try {
-                final WebElement cityElement = tile.findElement(byTextCity);
+                //final WebElement cityElement = tile.findElement(byTextCity);
                 final WebElement roomElement = tile.findElement(byTextRoomCount);
 
                 System.out.println("");
-                System.out.println("Zimmer: " + roomElement.getText());
-                if(roomElement.getText().startsWith(String.format("%d,", MIN_ROOM_COUNT))) {
+                if(roomElement != null) {
+                    System.out.println("Zimmer: " + roomElement);
                     ret = false;
                     break;
                 }
