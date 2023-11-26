@@ -39,7 +39,7 @@ public class WohnungsCheckIT extends DriverBase {
         assertThat(hasNoFreeFlats_gartenstadt).isEqualTo(true);
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void checkHbh() throws Exception {
         // HBH
         final HbhPage hbh = new HbhPage();

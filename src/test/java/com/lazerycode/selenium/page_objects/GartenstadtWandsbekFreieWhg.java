@@ -2,17 +2,19 @@ package com.lazerycode.selenium.page_objects;
 
 import com.lazerycode.selenium.DriverBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class GartenstadtWandsbekFreieWhg {
 
-    public static final String TEXT_TO_CHECK = "Momentan sind keine Objekte verfügbar.";
+    public static final String TEXT_TO_CHECK = "Momentan sind keine Objekte verfügbar1.";
 
     final WebDriver driver;
 
@@ -33,14 +35,20 @@ public class GartenstadtWandsbekFreieWhg {
     }
 
     public boolean hasNoFreeFlats() {
+        boolean ret = true;
         String textToCheck = String.format("//*[text()='%s']", TEXT_TO_CHECK);
         System.out.println(textToCheck);
         final By byTextToCheck = By.xpath(textToCheck);
-        wait.until(ExpectedConditions.presenceOfElementLocated(byTextToCheck));
-
-        WebElement e = driver.findElement(byTextToCheck);
-
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(byTextToCheck));
+            WebElement e = driver.findElement(byTextToCheck);
+            ret = TEXT_TO_CHECK.equals(e.getText());
+        } catch (TimeoutException e) {
+            final By byAnzZimmer = By.xpath("//span[@id='immo[0].labels.anzahlZimmer']");
+            final List<WebElement> anzZimmerElements = driver.findElements(byAnzZimmer);
+            ret = !anzZimmerElements.stream().anyMatch(el -> "3".equals(el.getText()));
+        }
         //Normally you would have some assertions to check things that you really care about
-        return TEXT_TO_CHECK.equals(e.getText());
+        return ret;
     }
 }
