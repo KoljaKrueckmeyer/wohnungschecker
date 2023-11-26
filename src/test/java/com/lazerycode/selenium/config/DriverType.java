@@ -8,8 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.opera.OperaDriver;
-import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -24,7 +22,7 @@ public enum DriverType implements DriverSetup {
         public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
             FirefoxOptions options = new FirefoxOptions();
             options.merge(capabilities);
-            options.setHeadless(HEADLESS);
+            //options.setHeadless(HEADLESS);
 
             return new FirefoxDriver(options);
         }
@@ -36,7 +34,9 @@ public enum DriverType implements DriverSetup {
 
             ChromeOptions options = new ChromeOptions();
             options.merge(capabilities);
-            options.setHeadless(HEADLESS);
+            if (HEADLESS) {
+                options.addArguments("--headless=new");
+            }
             options.addArguments("--no-default-browser-check");
             options.setExperimentalOption("prefs", chromePreferences);
 
@@ -47,7 +47,7 @@ public enum DriverType implements DriverSetup {
         public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
             InternetExplorerOptions options = new InternetExplorerOptions();
             options.merge(capabilities);
-            options.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+            //options.setCapability(CapabilityType.ENSURING_CLEAN_SESSION, true);
             options.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, true);
             options.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, true);
 
@@ -75,14 +75,14 @@ public enum DriverType implements DriverSetup {
             return new SafariDriver(options);
         }
     },
-    OPERA {
-        public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
-            OperaOptions options = new OperaOptions();
-            options.merge(capabilities);
-
-            return new OperaDriver(options);
-        }
-    },
+    //    OPERA {
+//        public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
+//            OperaOptions options = new OperaOptions();
+//            options.merge(capabilities);
+//
+//            return new OperaDriver(options);
+//        }
+//    },
     BRAVE {
         public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
             HashMap<String, Object> chromePreferences = new HashMap<>();
@@ -91,7 +91,7 @@ public enum DriverType implements DriverSetup {
             ChromeOptions options = new ChromeOptions();
             options.setBinary(getBraveBinaryLocation());
             options.merge(capabilities);
-            options.setHeadless(HEADLESS);
+            //options.setHeadless(HEADLESS);
             options.addArguments("--no-default-browser-check");
 
             return new ChromeDriver(options);
