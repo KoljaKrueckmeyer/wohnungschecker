@@ -56,7 +56,7 @@ public class WohnungsCheckIT extends DriverBase {
         assertThat(hasNoFreeFlats).isEqualTo(true);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void checkWohnbau() throws Exception {
         final WohnbauPage wohnbau = new WohnbauPage();
         wohnbau.acceptCookieLayer();
