@@ -1,18 +1,15 @@
 package com.lazerycode.selenium.config;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.Proxy;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import static com.lazerycode.selenium.config.DriverType.*;
-import static org.openqa.selenium.Proxy.ProxyType.MANUAL;
-import static org.openqa.selenium.remote.CapabilityType.PROXY;
 
 public class DriverFactory {
 
@@ -27,7 +24,7 @@ public class DriverFactory {
     private final String proxyPassword = System.getProperty("proxyPassword");
     private final String proxyDetails = String.format("%s:%d", proxyHostname, proxyPort);
 
-    private RemoteWebDriver driver;
+    private ChromeDriver driver;
     private final DriverType selectedDriverType;
 
     public DriverFactory() {
@@ -43,7 +40,7 @@ public class DriverFactory {
         selectedDriverType = driverType;
     }
 
-    public RemoteWebDriver getDriver() throws Exception {
+    public ChromeDriver getDriver() throws Exception {
         if (null == driver) {
             instantiateWebDriver(selectedDriverType);
         }
@@ -51,7 +48,7 @@ public class DriverFactory {
         return driver;
     }
 
-    public RemoteWebDriver getStoredDriver() {
+    public ChromeDriver getStoredDriver() {
         return driver;
     }
 
@@ -68,40 +65,45 @@ public class DriverFactory {
         LOG.info("Selected Browser: " + selectedDriverType);
         LOG.info("Connecting to Selenium Grid: " + useRemoteWebDriver);
 
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-
-        if (proxyEnabled) {
-            Proxy proxy = new Proxy();
-            proxy.setProxyType(MANUAL);
-            proxy.setHttpProxy(proxyDetails);
-            proxy.setSslProxy(proxyDetails);
-            if (!proxyUsername.isEmpty()) {
-                proxy.setSocksUsername(proxyUsername);
-            }
-            if (!proxyPassword.isEmpty()) {
-                proxy.setSocksPassword(proxyPassword);
-            }
-            desiredCapabilities.setCapability(PROXY, proxy);
+        Capabilities desiredCapabilities =  new ImmutableCapabilities();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        if (HEADLESS) {
+            chromeOptions.addArguments("--headless=new");
         }
+        chromeOptions.addArguments("--no-default-browser-check");
 
-        if (useRemoteWebDriver) {
-            URL seleniumGridURL = new URL(System.getProperty("gridURL"));
-            String desiredBrowserVersion = System.getProperty("desiredBrowserVersion");
-            String desiredPlatform = System.getProperty("desiredPlatform");
-
-            if (null != desiredPlatform && !desiredPlatform.isEmpty()) {
-                desiredCapabilities.setPlatform(Platform.valueOf(desiredPlatform.toUpperCase()));
-            }
-
-            if (null != desiredBrowserVersion && !desiredBrowserVersion.isEmpty()) {
-                desiredCapabilities.setVersion(desiredBrowserVersion);
-            }
-
-            desiredCapabilities.setBrowserName(selectedDriverType.toString());
-            driver = new RemoteWebDriver(seleniumGridURL, desiredCapabilities);
-        } else {
-            driver = driverType.getWebDriverObject(desiredCapabilities);
-        }
+//        if (proxyEnabled) {
+//            Proxy proxy = new Proxy();
+//            proxy.setProxyType(MANUAL);
+//            proxy.setHttpProxy(proxyDetails);
+//            proxy.setSslProxy(proxyDetails);
+//            if (!proxyUsername.isEmpty()) {
+//                proxy.setSocksUsername(proxyUsername);
+//            }
+//            if (!proxyPassword.isEmpty()) {
+//                proxy.setSocksPassword(proxyPassword);
+//            }
+//            desiredCapabilities.setCapability(PROXY, proxy);
+//        }
+//
+//        if (useRemoteWebDriver) {
+//            URL seleniumGridURL = new URL(System.getProperty("gridURL"));
+//            String desiredBrowserVersion = System.getProperty("desiredBrowserVersion");
+//            String desiredPlatform = System.getProperty("desiredPlatform");
+//
+//            if (null != desiredPlatform && !desiredPlatform.isEmpty()) {
+//                desiredCapabilities.setPlatform(Platform.valueOf(desiredPlatform.toUpperCase()));
+//            }
+//
+//            if (null != desiredBrowserVersion && !desiredBrowserVersion.isEmpty()) {
+//                desiredCapabilities.setVersion(desiredBrowserVersion);
+//            }
+//x^x^x
+//            desiredCapabilities.setBrowserName(selectedDriverType.toString());
+            driver = new ChromeDriver(chromeOptions);
+//        } else {
+//            driver = WebDriverManager.chromiumdriver().getWebDriver();
+//        }
     }
 }
 

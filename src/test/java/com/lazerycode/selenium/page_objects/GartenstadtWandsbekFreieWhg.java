@@ -1,20 +1,23 @@
 package com.lazerycode.selenium.page_objects;
 
 import com.lazerycode.selenium.DriverBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class GartenstadtWandsbekFreieWhg {
 
-    public static final String TEXT_TO_CHECK = "Momentan sind keine Objekte verfügbar1.";
+    public static final String TEXT_TO_CHECK = "Momentan sind keine Objekte verfügbar.";
 
     final WebDriver driver;
 
@@ -50,5 +53,23 @@ public class GartenstadtWandsbekFreieWhg {
         }
         //Normally you would have some assertions to check things that you really care about
         return ret;
+    }
+    private String getHash() {
+        WebElement el = driver.findElement(By.id("locationChoices"));
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+        byte[] screenshot = el.getScreenshotAs(OutputType.BYTES);
+        return DigestUtils.md5Hex(screenshot).toUpperCase();
+    }
+
+    public boolean hasChangedSinceLastRun() throws IOException, NoSuchAlgorithmException {
+        String currentHash = getHash();
+        File file = new File("src/test/resources/hashes/gartenstadt_hash.txt");
+        String lastHash = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+        FileUtils.writeStringToFile(file, currentHash, StandardCharsets.UTF_8);
+        return !currentHash.equalsIgnoreCase(lastHash);
     }
 }

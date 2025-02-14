@@ -1,12 +1,21 @@
 package com.lazerycode.selenium.page_objects;
 
 import com.lazerycode.selenium.DriverBase;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +27,9 @@ public class DhuHomePage {
     final WebDriver driver;
 
     private final WebDriverWait wait;
+
+    WebElement e;
+
     public DhuHomePage() throws Exception {
         this.driver = DriverBase.getDriver();
         driver.get("https://hpm2.immosolve.eu/immosolve_presentation/pub/modern/2223228/HP/immo.jsp");
@@ -39,9 +51,27 @@ public class DhuHomePage {
         final By byTextToCheck = By.xpath(textToCheck);
         wait.until(ExpectedConditions.presenceOfElementLocated(byTextToCheck));
 
-        WebElement e = driver.findElement(byTextToCheck);
-
+        e = driver.findElement(byTextToCheck);
         //Normally you would have some assertions to check things that you really care about
         return DHU_TEXT_TO_CHECK.equals(e.getText());
+    }
+
+    private String getHash() {
+        WebElement el = driver.findElement(By.id("ispage"));
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+        byte[] screenshot = el.getScreenshotAs(OutputType.BYTES);
+        return DigestUtils.md5Hex(screenshot).toUpperCase();
+    }
+
+    public boolean hasChangedSinceLastRun() throws IOException, NoSuchAlgorithmException {
+        String currentHash = getHash();
+        File file = new File("src/test/resources/hashes/dhu_hash.txt");
+        String lastHash = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+        FileUtils.writeStringToFile(file, currentHash, StandardCharsets.UTF_8);
+        return !currentHash.equalsIgnoreCase(lastHash);
     }
 }

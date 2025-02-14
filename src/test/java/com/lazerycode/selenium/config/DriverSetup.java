@@ -1,8 +1,9 @@
 package com.lazerycode.selenium.config;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public interface DriverSetup {
-    RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities);
+    ChromeDriver getWebDriverObject(Capabilities capabilities);
 }

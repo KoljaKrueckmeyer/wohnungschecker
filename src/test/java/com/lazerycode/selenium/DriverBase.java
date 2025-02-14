@@ -4,7 +4,7 @@ import com.lazerycode.selenium.config.DriverFactory;
 import com.lazerycode.selenium.listeners.ScreenshotListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -30,7 +30,7 @@ public class DriverBase {
         });
     }
 
-    public static RemoteWebDriver getDriver() throws Exception {
+    public static WebDriver getDriver() throws Exception {
         return driverFactoryThread.get().getDriver();
     }
 

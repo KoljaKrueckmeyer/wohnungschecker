@@ -39,8 +39,8 @@
             </version>-->
             <version id="100">
                 <bitrate thirtytwobit="true" sixtyfourbit="true">
-                    <filelocation>https://chromedriver.storage.googleapis.com/103.0.5060.53/chromedriver_win32.zip</filelocation>
-                    <hash>266a503f3ac359d6ddcbaeb9122c3354</hash>
+                    <filelocation>https://storage.googleapis.com/chrome-for-testing-public/133.0.6943.53/win64/chromedriver-win64.zip</filelocation>
+                    <hash>8ad868659a8b56f7eaccd8add8dd10df1061576f</hash>
                     <hashtype>sha1</hashtype>
                 </bitrate>
             </version>

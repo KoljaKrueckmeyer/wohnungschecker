@@ -46,7 +46,7 @@
         <jansi.version>2.3.4</jansi.version>
         <log4j-api.version>2.17.1</log4j-api.version>
         <query.version>2.0.0-BETA3</query.version>
-        <selenium.version>4.15.0</selenium.version>
+        <selenium.version>4.28.1</selenium.version>
         <testng.version>7.3.0</testng.version>
         <!--Plugin Versions-->
         <driver-binary-downloader-maven-plugin.version>1.0.18</driver-binary-downloader-maven-plugin.version>
@@ -59,7 +59,7 @@
         <retry.attempts>4</retry.attempts>
         <browser>chrome</browser>
         <threads>1</threads>
-        <remote>false</remote>
+        <remote>true</remote>
         <headless>true</headless>
         <seleniumGridURL/>
         <platform/>
@@ -71,7 +71,39 @@
         <proxyPassword/>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-remote-driver -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.28.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-remote-driver -->
+<!--        <dependency>-->
+<!--            <groupId>org.seleniumhq.selenium</groupId>-->
+<!--            <artifactId>selenium-remote-driver</artifactId>-->
+<!--            <version>4.28.1</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
@@ -168,6 +200,26 @@
                                 <goals>
                                     <goal>selenium</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.coderplus.maven.plugins</groupId>
+                        <artifactId>copy-rename-maven-plugin</artifactId>
+                        <version>1.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>rename-file</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <overWrite>true</overWrite>
+                                    <ignoreFileNotFoundOnIncremental>true</ignoreFileNotFoundOnIncremental>
+                                    <sourceFile>${project.basedir}/src/test/resources/selenium_standalone_binaries/windows/googlechrome/64bit/chromedriver.exe</sourceFile>
+                                    <destinationFile>${project.basedir}/src/test/resources/selenium_standalone_binaries/windows/googlechrome/64bit/chromedriver</destinationFile>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
