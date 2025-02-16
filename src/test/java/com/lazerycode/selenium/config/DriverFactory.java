@@ -68,7 +68,7 @@ public class DriverFactory {
         ChromeOptions chromeOptions = new ChromeOptions();
         if (HEADLESS) {
             LOG.info("Using Headless Chrome driver");
-            chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("--headless=new");
         }
         chromeOptions.addArguments("--no-default-browser-check");
         chromeOptions.addArguments("--no-sandbox");
