@@ -59,7 +59,7 @@
         <retry.attempts>4</retry.attempts>
         <browser>chrome</browser>
         <threads>1</threads>
-        <remote>true</remote>
+        <remote>false</remote>
         <headless>true</headless>
         <seleniumGridURL/>
         <platform/>
