@@ -44,4 +44,3 @@ jobs:
       run: mvn -B verify --file pom.xml -Dheadless=true
 
     - uses: stefanzweifel/git-auto-commit-action@v5
-      file_pattern: '*.txt'
