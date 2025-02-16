@@ -75,7 +75,9 @@ public class DriverFactory {
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-extensions");
+        chromeOptions.addArguments("--user-data-dir=/tmp/selenium");
         chromeOptions.setBrowserVersion("135.0.7020.0");
+
 
 //        if (proxyEnabled) {
 //            Proxy proxy = new Proxy();
