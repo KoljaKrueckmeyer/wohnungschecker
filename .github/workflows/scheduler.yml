@@ -31,15 +31,13 @@ jobs:
     - name: Run a one-line script
       run: echo Beginne Wohnungscheck..
 
-    - name: Install Google Chrome # Using shell script to install Google Chrome
-      run: |
-        chmod +x ./scripts/InstallChrome.sh
-        ./scripts/InstallChrome.sh
+    - uses: browser-actions/setup-chrome@latest
+    - run: chrome --version
 
-    - name: Set up JDK 11
+    - name: Set up JDK 17
       uses: actions/setup-java@v2 # Setup JAVA
       with:
-        java-version: 11
+        java-version: 17
         distribution: 'adopt'
         cache: maven
 

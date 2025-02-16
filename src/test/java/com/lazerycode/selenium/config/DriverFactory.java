@@ -68,9 +68,11 @@ public class DriverFactory {
         Capabilities desiredCapabilities =  new ImmutableCapabilities();
         ChromeOptions chromeOptions = new ChromeOptions();
         if (HEADLESS) {
-            chromeOptions.addArguments("--headless=new");
+            chromeOptions.addArguments("--headless");
         }
         chromeOptions.addArguments("--no-default-browser-check");
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
 
 //        if (proxyEnabled) {
 //            Proxy proxy = new Proxy();
