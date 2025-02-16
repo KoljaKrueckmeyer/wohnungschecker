@@ -75,7 +75,7 @@ public class DriverFactory {
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-extensions");
-        chromeOptions.addArguments("--user-data-dir=/tmp/selenium");
+        chromeOptions.addArguments("--user-data-dir="+ System.getProperty("user.dir") + "/test");
         chromeOptions.setBrowserVersion("135.0.7020.0");
 
 
