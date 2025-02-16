@@ -65,15 +65,16 @@ public class DriverFactory {
         LOG.info("Selected Browser: " + selectedDriverType);
         LOG.info("Connecting to Selenium Grid: " + useRemoteWebDriver);
 
-        Capabilities desiredCapabilities =  new ImmutableCapabilities();
         ChromeOptions chromeOptions = new ChromeOptions();
         if (HEADLESS) {
+            LOG.info("Using Headless Chrome driver");
             chromeOptions.addArguments("--headless");
         }
         chromeOptions.addArguments("--no-default-browser-check");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--remote-allow-origins=*");
+        chromeOptions.setBrowserVersion("135.0.7020.0");
 
 //        if (proxyEnabled) {
 //            Proxy proxy = new Proxy();

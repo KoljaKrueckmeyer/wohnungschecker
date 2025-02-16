@@ -65,14 +65,7 @@
         <remote>false</remote>
         <remoteDriver>false</remoteDriver>
         <headless>true</headless>
-        <seleniumGridURL/>
-        <platform/>
-        <browserVersion/>
-        <proxyEnabled>false</proxyEnabled>
-        <proxyHost/>
-        <proxyPort/>
-        <proxyUsername/>
-        <proxyPassword/>
+
     </properties>
 
     <repositories>
