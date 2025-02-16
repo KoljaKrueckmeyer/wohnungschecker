@@ -59,8 +59,8 @@
         <retry.attempts>4</retry.attempts>
         <browser>chrome</browser>
         <threads>1</threads>
-        <remote>true</remote>
-        <remoteDriver>true</remoteDriver>
+        <remote>false</remote>
+        <remoteDriver>false</remoteDriver>
         <headless>true</headless>
         <seleniumGridURL/>
         <platform/>
