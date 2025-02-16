@@ -71,12 +71,11 @@ public class DriverFactory {
             chromeOptions.addArguments("--headless=new");
         }
         chromeOptions.addArguments("--no-default-browser-check");
-        chromeOptions.addArguments("--no-sandbox");
-        chromeOptions.addArguments("--disable-dev-shm-usage");
+        //chromeOptions.addArguments("--no-sandbox");
+        // chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--remote-allow-origins=*");
-        chromeOptions.addArguments("--disable-extensions");
-        chromeOptions.addArguments("--user-data-dir="+ System.getProperty("user.dir") + "/test");
-        chromeOptions.setBrowserVersion("135.0.7020.0");
+        //chromeOptions.addArguments("--disable-extensions");
+        //chromeOptions.addArguments("--user-data-dir="+ System.getProperty("user.dir") + "/test");
 
 
 //        if (proxyEnabled) {

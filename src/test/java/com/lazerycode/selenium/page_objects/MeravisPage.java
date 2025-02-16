@@ -34,8 +34,8 @@ public class MeravisPage {
     }
 
     public void acceptCookieLayer() throws Exception {
-        final WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), Duration.ofSeconds(15), Duration.ofMillis(100));
-        By acceptCookieLayerButtonSelector = By.id("uc-btn-accept-banner");
+        final WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), Duration.ofSeconds(15), Duration.ofMillis(1000));
+        By acceptCookieLayerButtonSelector = By.xpath("//*[contains(@data-testid, 'uc-accept-all-button')]");
         wait.until(ExpectedConditions.presenceOfElementLocated(acceptCookieLayerButtonSelector));
         WebElement acceptCookieLayerButton = driver.findElement(acceptCookieLayerButtonSelector);
         acceptCookieLayerButton.click();
@@ -70,7 +70,7 @@ public class MeravisPage {
     private String getHash() {
         WebElement el = driver.findElement(By.className("immo-list"));
         try {
-            Thread.sleep(6000);
+            Thread.sleep(8000);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }

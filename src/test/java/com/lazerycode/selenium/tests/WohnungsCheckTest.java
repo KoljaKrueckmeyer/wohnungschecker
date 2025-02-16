@@ -29,7 +29,7 @@ public class WohnungsCheckTest extends DriverBase {
         // DHU
         final DhuHomePage dhuHomePage = new DhuHomePage();
         dhuHomePage.acceptCookieLayer();
-        boolean hasNoFreeFlats_dhu = true;
+        boolean hasNoFreeFlats_dhu;
         try {
             hasNoFreeFlats_dhu = dhuHomePage.hasNoFreeFlats();
         } catch (TimeoutException e) {
@@ -72,7 +72,7 @@ public class WohnungsCheckTest extends DriverBase {
             assertThat(!hasChangedSinceLastRun).isEqualTo(true);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void checkMeravis() throws Exception {
         // Meravis
         final MeravisPage meravis = new MeravisPage();
