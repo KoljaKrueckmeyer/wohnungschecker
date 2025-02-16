@@ -53,4 +53,7 @@ jobs:
     - uses: stefanzweifel/git-auto-commit-action@v5
       id: auto-commit-action
       with:
-        file_pattern: '*.txt'
+        file_pattern: 'src/test/resources/hashes/\*.txt'
+        branch: ${{ github.head_ref }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
