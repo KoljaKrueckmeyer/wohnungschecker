@@ -53,7 +53,9 @@ jobs:
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
       with:
+        author_name: Your Name
+        author_email: mail@example.com
         message: 'Your commit message'
-        add: '.'
+        add: '*.txt'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
