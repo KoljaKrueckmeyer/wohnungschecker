@@ -57,7 +57,7 @@ jobs:
       if: always()
       uses: EndBug/add-and-commit@v9
       with:
-        author_name: Your Name
+        author_name: Github Action
         author_email: mail@example.com
         message: 'Update hashes'
         add: '*.txt'
