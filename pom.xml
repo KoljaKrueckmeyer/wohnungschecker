@@ -40,17 +40,20 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
+        <maven.compiler.source.version>17</maven.compiler.source.version>
+        <maven.compiler.target.version>17</maven.compiler.target.version>
         <!--Dependency Versions-->
         <assertj-core.version>3.21.0</assertj-core.version>
         <jansi.version>2.3.4</jansi.version>
         <log4j-api.version>2.17.1</log4j-api.version>
         <query.version>2.0.0-BETA3</query.version>
-        <selenium.version>4.28.1</selenium.version>
+        <selenium.version>4.21.0</selenium.version>
         <testng.version>7.3.0</testng.version>
         <!--Plugin Versions-->
         <driver-binary-downloader-maven-plugin.version>1.0.18</driver-binary-downloader-maven-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <aspectj.version>1.9.20.1</aspectj.version>
         <!--Configuration Properties-->
         <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
         <overwrite.binaries>true</overwrite.binaries>

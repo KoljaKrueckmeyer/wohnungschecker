@@ -73,6 +73,7 @@ public class DriverFactory {
         chromeOptions.addArguments("--no-default-browser-check");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
+        chromeOptions.addArguments("--remote-allow-origins=*");
 
 //        if (proxyEnabled) {
 //            Proxy proxy = new Proxy();
