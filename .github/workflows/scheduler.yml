@@ -59,7 +59,7 @@ jobs:
       with:
         author_name: Your Name
         author_email: mail@example.com
-        message: 'Your commit message'
+        message: 'Update hashes'
         add: '*.txt'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
