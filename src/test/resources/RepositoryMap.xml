@@ -87,7 +87,7 @@
         <driver id="googlechrome">
             <version id="97">
                 <bitrate sixtyfourbit="true">
-                    <filelocation>https://chromedriver.storage.googleapis.com/97.0.4692.71/chromedriver_linux64.zip</filelocation>
+                    <filelocation>https://storage.googleapis.com/chrome-for-testing-public/133.0.6943.98/linux64/chromedriver-linux64.zip</filelocation>
                     <hash>dbd46410408b4dccbadc53ddc7695dc76b2dfa69</hash>
                     <hashtype>sha1</hashtype>
                 </bitrate>
