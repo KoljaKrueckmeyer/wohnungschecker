@@ -52,6 +52,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B verify --file pom.xml -Dheadless=true
 
+    - run: git status
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
       with:
