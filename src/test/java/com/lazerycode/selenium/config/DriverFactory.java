@@ -74,6 +74,7 @@ public class DriverFactory {
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--remote-allow-origins=*");
+        chromeOptions.addArguments("--disable-extensions");
         chromeOptions.setBrowserVersion("135.0.7020.0");
 
 //        if (proxyEnabled) {
@@ -105,6 +106,7 @@ public class DriverFactory {
 //x^x^x
 //            desiredCapabilities.setBrowserName(selectedDriverType.toString());
             driver = new ChromeDriver(chromeOptions);
+            driver.manage().window().maximize();
 //        } else {
 //            driver = WebDriverManager.chromiumdriver().getWebDriver();
 //        }
